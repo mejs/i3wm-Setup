@@ -1,7 +1,7 @@
 # i3wm-Setup
 
-1.Included files:
-2.$HOME/./i3/config
-3.$HOME/.conkyrc
-4.$HOME/bin/conexec.sh
-5.$HOME/bin/conkybar
+..* Included files:
+1. $HOME/./i3/config
+2. $HOME/.conkyrc
+3. $HOME/bin/conexec.sh
+4. $HOME/bin/conkybar
