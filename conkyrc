@@ -32,10 +32,14 @@ conky.text = [[
 	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#EECE01"},
       $endif
     $else
-	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#8AD749"},
+	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#94F397"},
     $endif
   $else
-    {"full_text": "🔌", "color": "\#94F397"},
+      ${if_match ${battery_percent BAT0} <= 99}
+	    {"full_text": "🔌${battery_percent BAT0}%", "color": "\#94F397"},
+	$else
+		{"full_text": "🔌", "color": "\#94F397"},
+	$endif
  $endif
   ${if_existing /sys/class/net/enp0s20u2/operstate up}
     {"full_text": "🜷", "color": "\#8BADF9"},
