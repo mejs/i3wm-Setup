@@ -69,6 +69,9 @@ bindsym Mod1+v split v
 # enter fullscreen mode for the focused container
 bindsym Mod1+f fullscreen
 
+#move workspace to different screen
+bindsym Mod1+Shift+z move workspace to output left
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym Mod1+s layout stacking
 bindsym Mod1+w layout tabbed
@@ -177,6 +180,7 @@ bar {
 exec chromium
 exec xset -dpms; xset s off
 exec xcompmgr
+exec google-drive-ocamlfuse /home/vlado/googledrive/
 
 #exec inotify
 #exec /home/vlado/bin/thinkpad-dock.sh
@@ -185,7 +189,8 @@ exec xbindkeys
 exec --no-startup-id pa-applet
 exec blueman-applet
 #exec gmailchecker
-exec thunar
+exec nautilus
+exec "sh -c 'sleep 10; exec keepass'"
 #exec --no-startup-id spotify
 exec thunderbird
 exec --no-startup-id feh --bg-fill $HOME/.background/background.jpg
@@ -200,7 +205,7 @@ exec xflux -z 11230 -k 5100
 #exec /usr/lib/gnome-settings-daemon/gnome-settings-daemon-localeexec
 
 #display and ethernet scripts
-exec /usr/bin/display.sh
+#exec /usr/bin/display.sh
 exec /usr/bin/lan.sh
 
 
@@ -210,7 +215,7 @@ client.background #222727
 font pango: Ubuntu Mono 10
 
 #slingscold
-bindsym XF86Launch1 exec slingscold
+#bindsym XF86Launch1 exec slingscold
 
 #volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1  +10% && killall -SIGUSR1 i3status
@@ -223,10 +228,10 @@ bindsym XF86AudioPlay exec playerctl play-pause
 
 
 #window classes
-assign [class="Chromium"] 1
+
 assign [class="VirtualBox"] 5
 assign [class="Spotify"] 6
-assign [class="Thunar"] 3
+assign [class="Nautilus"] 3
 assign [class="Thunderbird"] 2
 #for_window [class="X-terminal-emulator" instance="x-terminal-emulator" title="weechat 0.4.2"] floating enable
 #assign [instance="^weechat$"] IRC
@@ -259,11 +264,13 @@ bindsym Mod4+l exec ~/bin/i3-lock-blur
 
 # screenshot
 
-bindsym Print exec scrot -e 'mv $f /home/vlado/Pictures/'
+bindsym Print exec scrot -e 'mv $f /home/vlado/foto/Pictures/screenshot'
 # scrot  - select window or rectangle
-bindsym Mod1+Print exec scrot -s -e 'mv $f /home/vlado/Pictures/'
+bindsym Mod1+Print exec scrot -s -e 'mv $f /home/vlado/foto/Pictures/screenshot'
 #scrot - gimp
-bindsym Mod2+Print exec scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
+bindsym Mod2+Print exec scrot -e 'mv $f /home/vlado/foto/Pictures/screenshot'
+
+# scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
 
 
 # exit script
@@ -292,7 +299,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -time 0 -steps 1
 
 bindsym Mod1+c exec chromium
 # --force-device-scale-factor=1
-bindsym Mod1+n exec thunar
+bindsym Mod1+n exec nautilus
 
 # task manager
 bindsym Mod1+control+Delete exec terminator -e htop
@@ -303,5 +310,6 @@ bindsym Mod4+h exec setxkbmap hr
 bindsym Mod4+e exec setxkbmap en_US
 
 #display fix
-bindsym Mod4+p exec /usr/bin/display.sh
-bindsym Mod4+m exec /usr/bin/display.sh
+bindsym Mod1+b exec xrandr --output HDMI1 --off
+bindsym Mod1+m exec xrandr --output HDMI1 --auto --right-of eDP1
+

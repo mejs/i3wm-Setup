@@ -20,25 +20,24 @@ color3 = 'F80E27',
 conky.text = [[
 
 ,[{"full_text": " "},\
-  { "full_text" : " home: ${fs_free /home}" , "color" : "\#00A9B5" },\
-  { "full_text" : " root: ${fs_free /}" , "color" : "\#DFD60C" },\
+  { "full_text" : "home: ${fs_free /home}" , "color" : "\#00A9B5" },\
+  { "full_text" : "root: ${fs_free /}" , "color" : "\#DFD60C" },\
   { "full_text": " ${acpitemp} ℃","color": "\#FB4646", "name":"temp"},\
   ${if_existing /sys/class/power_supply/AC/online 0}
       ${if_match ${battery_percent BAT0} <= 40}
       ${if_match ${battery_percent BAT0} <= 20}
-	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#F80E27"},
-        ${execi 120 notify-send -t 2000 -i "Battery Low" 'Battery Low'}
+	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#F80E27", "name":"battery"},
      $else
-	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#EECE01"},
+	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#EECE01", "name":"battery"},
       $endif
     $else
-	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#94F397"},
+	{ "full_text": "🔋 ${battery_percent BAT0}%", "color": "\#94F397", "name":"battery"},
     $endif
   $else
       ${if_match ${battery_percent BAT0} <= 99}
-	    {"full_text": "🔌${battery_percent BAT0}%", "color": "\#94F397"},
+	    {"full_text": "🔌${battery_percent BAT0}%", "color": "\#94F397", "name":"battery"},
 	$else
-		{"full_text": "🔌", "color": "\#94F397"},
+		{"full_text": "🔌", "color": "\#94F397", "name":"battery"},
 	$endif
  $endif
   ${if_existing /sys/class/net/enp0s20u2/operstate up}
@@ -48,7 +47,7 @@ conky.text = [[
     {"full_text": "🜷", "color": "\#8BADF9"},
   ${endif}
   ${if_existing /sys/class/net/wlp2s0/operstate up}
-    {"full_text": " ${wireless_link_qual_perc wlp2s0}%", "color": "\#8BADF9"},\
+    {"full_text": "📶 ${wireless_link_qual_perc wlp2s0}%", "color": "\#8BADF9"},\
     { "full_text" : "${wireless_essid wlp2s0}" , "color": "\#8BADF9" },
   ${endif}
   {"full_text": " ${execi 1800 ~/bin/update-count.sh} ", "name":"update"},\
